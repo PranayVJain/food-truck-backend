@@ -1,0 +1,42 @@
+Full Stack: Food-Truck-as-a-Service
+
+Lunch is important and knowing our lunch choices is even more so. While our office manager
+publishes a paper copy of the food truck schedule once a month, we’d like this service to be
+available digitally, so we can choose our lunch from the comfort of our desks. For an internal
+hackathon, you’ve been asked to write a server-and-UI into which we can manually add the food
+trucks for each month, and access todays choices. The requirements are:
+ A RESTful API that allows:
+ Data entry of the food trucks for each day.
+ Each food truck only needs a name and a date, not a location.
+ Editing food trucks if we have a typo.
+ Listing today’s Food trucks.
+ A UI that consumes the above API, and...
+ Permits easy data entry.
+ Allows a quick view of todays Food Truck options.
+ A persistence layer of your choice.
+ Assume it is running on a retired Linux server inside our firewall, so no authentication is needed.
+ Use a GitHub repo for your code and send us the repo.
+
+Clarifications
+1. Can admin delete a food truck for a given day?
+2. What is the maximum number of food trucks on any given day?
+3. Can a user select a date range or future date to get list of all food trucks?
+4. Editing food trucks if we have a typo. Typo in name? or the food truck should also have description?
+5. Can admin edit the date?
+6. Should there be a cart where user can add food truck or its only a browsing feature.
+
+
+Assumptions
+1. Food truck name is unique.
+2. User management is not handled. 
+3. Authentication is not handled.
+4. A user can only see the list of food trucks but not the food options available in the food truck.
+5. API for bulk upload for a month is not supported.
+6. The application should be reliable, scalable
+
+Feature listing: 
+1. The admin user is the super user. 
+2. Admin user can add the food trucks for a given day.
+3. Admin user can list the food trucks and edit if there is any typo.
+4. A user other than admin user is a guest.
+5. Guest can get the list of food trucks for a given day.
