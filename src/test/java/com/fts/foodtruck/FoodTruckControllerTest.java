@@ -22,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fts.foodtruck.controller.FoodTruckController;
 import com.fts.foodtruck.model.FoodTruck;
 import com.fts.foodtruck.service.FoodTruckService;
@@ -50,8 +51,10 @@ public class FoodTruckControllerTest {
     final LocalDateTime localDateTime = LocalDateTime.now();
     final FoodTruck foodTruck = new FoodTruck("truckId", "Truck1", "My truck", localDateTime);
     Mockito.when(foodTruckService.saveFoodTruck(foodTruck)).thenReturn(foodTruck);
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.registerModule(new JavaTimeModule());
     mockMvc.perform(post("/v1/foodtrucks").contentType(MediaType.APPLICATION_JSON)
-        .content(new ObjectMapper().writeValueAsString(foodTruck)))
+        .content(objectMapper.writeValueAsString(foodTruck)))
         .andExpect(status().isCreated());
   }
 
