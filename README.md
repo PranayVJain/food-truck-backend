@@ -3,7 +3,32 @@ Lunch is important and knowing our lunch choices is even more so this service he
 for all the available lunch options provided by food trucks. It allows the admin to add and edit the
  food trucks while the users can list the food trucks on any given day. 
 
-## Understanding food-truck-backend backend structure
+## REST API
+
+### Add a new food truck
+
+#### Request
+    
+#### Response
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:30 GMT
+    Status: 201 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 2
+    []
+    
+#### /v1/foodtrucks
+* `POST` : Create a new food truck
+* `GET` : Get all food trucks
+
+#### /v1/foodtrucks/{foodtruckid}
+* `GET` : Get a food truck
+* `PUT` : Update a food truck
+
+#### /v1/foodtrucks?fromDate={fromDate}&endDate={endDate}
+* `GET` : Get all food trucks within the given time range.
+
 
 ## Running food-truck-backend locally
 food-truck-backend is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built 
