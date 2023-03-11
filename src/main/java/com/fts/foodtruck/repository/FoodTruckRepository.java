@@ -1,17 +1,14 @@
 package com.fts.foodtruck.repository;
 
 import com.fts.foodtruck.model.FoodTruck;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 
-public interface FoodTruckRepository {
+@Repository
+public interface FoodTruckRepository extends JpaRepository<FoodTruck, String> {
 
-  FoodTruck save(final FoodTruck foodTruck);
-
-  void update(final FoodTruck foodTruck);
-
-  List<FoodTruck> findAll();
-
-  Optional<FoodTruck> findById(final String id);
+  List<FoodTruck> findAllByAvailableDateBetween(final LocalDateTime fromDate, final LocalDateTime toDate);
 }

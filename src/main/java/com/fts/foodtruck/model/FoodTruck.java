@@ -1,18 +1,22 @@
 package com.fts.foodtruck.model;
 
-import java.time.Instant;
-import java.util.UUID;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@RequiredArgsConstructor
-@ToString
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class FoodTruck {
 
-  private final String id;
-  private final String name;
-  private final String description;
-  private final Instant date;
+  @Id
+  private String id;
+  private String name;
+  private String description;
+  private LocalDateTime availableDate;
+
 }
