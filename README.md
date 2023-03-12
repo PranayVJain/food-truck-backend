@@ -3,6 +3,12 @@ Lunch is important and knowing our lunch choices is even more so this service he
 for all the available lunch options provided by food trucks. It allows the admin to add and edit the
  food trucks while the users can list the food trucks on any given day. 
 
+# Requirements
+1. Data entry of the food trucks for each day.
+2. Each food truck only needs a name and a date, not a location.
+3. Editing food trucks if we have a typo.
+4. Listing today’s Food trucks.
+
 ## REST API
 
 ### Add a new food truck
@@ -137,3 +143,24 @@ The following items should be installed in your system:
 4) food-truck-backend API end points
 
     Use [http://localhost:8080](http://localhost:8080) to access APIs.
+    
+## Limitations
+- The application does not support bulk addition of food trucks.
+- The application does not support deletion of food trucks.
+- The application is integrated with h2 db and can be extended later to other data base as well
+
+## Assumptions
+### Functional Assumptions
+- Authentications and authorization are already handled.
+- The APIs are well published and documented.
+- The CI/CD process is already set to publish the helm charts and the docker image.
+- Food truck names are unique.
+- The number of food trucks for a day does not exceed 50
+- RBAC is already in place.
+
+### Non Functional Assumptions
+- The service is highly available.
+- Prometheus server captures the metrics and publishes the report to monitor the application.
+- Liveness and Readiness probe are in place.
+- Pod wil scale up based on the load using K8s Scaled objects.
+- Rate limiter is in place if required.
