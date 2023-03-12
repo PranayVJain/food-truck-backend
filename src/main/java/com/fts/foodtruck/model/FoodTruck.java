@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Model to handle food truck beans.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

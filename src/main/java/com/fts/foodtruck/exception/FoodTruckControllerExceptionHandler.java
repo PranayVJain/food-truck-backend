@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Exception controller class to handle different responses for different exceptions.
+ */
 @RestControllerAdvice
 public class FoodTruckControllerExceptionHandler {
 

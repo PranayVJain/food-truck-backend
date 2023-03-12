@@ -6,28 +6,64 @@ for all the available lunch options provided by food trucks. It allows the admin
 ## REST API
 
 ### Add a new food truck
-
+    POST : /v1/foodtrucks
 #### Request
-    
+    curl --location --request POST 'http://localhost:8080/v1/foodtrucks' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "name": "FoodTruck",
+            "description": "A food truck",
+            "availableDate": "2023-03-11T06:39:29.21Z"
+        }'
 #### Response
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
     Status: 201 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 2
-    []
-    
-#### /v1/foodtrucks
-* `POST` : Create a new food truck
-* `GET` : Get all food trucks
+    {
+        "id": "0231a03b-ff9a-493a-82d2-0e72064a3a63",
+        "name": "FoodTruck3",
+        "description": "A food truck",
+        "availableDate": "2023-03-11T06:39:29.21"
+    }
 
-#### /v1/foodtrucks/{foodtruckid}
-* `GET` : Get a food truck
-* `PUT` : Update a food truck
+### Get all food trucks
+    GET : /v1/foodtrucks
+#### Request
+    curl --location --request GET 'http://localhost:8080/v1/foodtrucks'
+#### Response
+    Status: 200 OK
+    [
+        {
+            "id": "0231a03b-ff9a-493a-82d2-0e72064a3a63",
+            "name": "FoodTruck3",
+            "description": "A food truck",
+            "availableDate": "2023-03-11T06:39:29.21"
+        }
+    ]
 
-#### /v1/foodtrucks?fromDate={fromDate}&endDate={endDate}
-* `GET` : Get all food trucks within the given time range.
+### Get all food trucks within given time range
+    GET : /v1/foodtrucks?fromDate={fromDate}&toDate={toDate}
+#### Request
+    curl --location --request GET 'http://localhost:8080/v1/foodtrucks?fromDate=2023-03-09T00:39:29&toDate=2023-03-12T00:39:29'
+#### Response
+    Status: 200 OK
+    [
+        {
+            "id": "0231a03b-ff9a-493a-82d2-0e72064a3a63",
+            "name": "FoodTruck3",
+            "description": "A food truck",
+            "availableDate": "2023-03-11T06:39:29.21"
+        }
+    ] 
+
+### Update food truck
+    PUT : /v1/foodtrucks/{foodtruckid}
+#### Request
+    curl --location --request PUT 'http://localhost:8080/v1/foodtrucks/77557b0a-0200-4d12-b9e1-2efefc6e17cd' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "name": "FoodTruck2"
+    }'
+#### Response
+    Status: 200 OK
 
 
 ## Running food-truck-backend locally

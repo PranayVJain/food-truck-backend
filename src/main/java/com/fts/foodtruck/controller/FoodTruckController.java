@@ -2,10 +2,10 @@ package com.fts.foodtruck.controller;
 
 import com.fts.foodtruck.model.FoodTruck;
 import com.fts.foodtruck.service.FoodTruckService;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1/foodtrucks")
 public class FoodTruckController {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(FoodTruckController.class);
+
   private final FoodTruckService foodTruckService;
 
   public FoodTruckController(final FoodTruckService foodTruckService) {
@@ -39,7 +41,9 @@ public class FoodTruckController {
    */
   @PostMapping(consumes = "application/json")
   public ResponseEntity<FoodTruck> createFoodTruck(@RequestBody FoodTruck foodTruck) {
+    LOGGER.info("Received request to create a new food truck <{}>", foodTruck);
     final FoodTruck createdFoodTruck = foodTruckService.saveFoodTruck(foodTruck);
+    LOGGER.info("Created a new food truck <{}>", foodTruck);
     return ResponseEntity.status(HttpStatus.CREATED).body(createdFoodTruck);
   }
 
@@ -49,10 +53,17 @@ public class FoodTruckController {
    * @return
    */
   @GetMapping(produces = "application/json")
-  public ResponseEntity<List<FoodTruck>> getAllFoodTrucks(
-      @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime fromDate,
-      @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime toDate) {
-    return ResponseEntity.ok(foodTruckService.getAllFoodTrucks(fromDate, toDate));
+  public ResponseEntity<List<FoodTruck>> getAllFoodTrucksByTimeRange(
+      @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fromDate,
+      @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime toDate) {
+    LOGGER.info("Received request to get list of all food truck from <{}> to <{}>", fromDate, toDate);
+    List<FoodTruck> foodTrucks;
+    if (fromDate == null && toDate == null) {
+      foodTrucks = foodTruckService.getAllFoodTrucks();
+    } else {
+      foodTrucks = foodTruckService.getAllFoodTrucks(fromDate, toDate);
+    }
+    return ResponseEntity.ok(foodTrucks);
   }
 
   /**

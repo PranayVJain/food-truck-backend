@@ -1,23 +1,10 @@
-/*
- * #%L
- * foodtruck
- *
- * %%
- * Copyright (C) 2018 - 2022 Nuance Communications Inc. All Rights Reserved.
- * %%
- *
- * The copyright to the computer program(s) herein is the property of
- * Nuance Communications Inc. The program(s) may be used and/or copied
- * only with the written permission from Nuance Communications Inc.
- * or in accordance with the terms and conditions stipulated in the
- * agreement/contract under which the program(s) have been supplied.
- * #L%
- */
+
 package com.fts.foodtruck;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,6 +24,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+/**
+ * Controller test cases
+ */
 @WebMvcTest(controllers = FoodTruckController.class)
 public class FoodTruckControllerTest {
 
@@ -70,5 +60,16 @@ public class FoodTruckControllerTest {
             + "&toDate=" + toDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"))))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", hasSize(2)));
+  }
+
+  @Test
+  public void ifValidInputThenUpdateFoodTruck() throws Exception {
+    final LocalDateTime localDateTime = LocalDateTime.now();
+    final FoodTruck foodTruck = new FoodTruck("truckId", "Truck1", "My truck", localDateTime);
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.registerModule(new JavaTimeModule());
+    mockMvc.perform(put("/v1/foodtrucks/{foodTruckId}","truckId").contentType(MediaType.APPLICATION_JSON)
+        .content(objectMapper.writeValueAsString(foodTruck)))
+        .andExpect(status().isOk());
   }
 }

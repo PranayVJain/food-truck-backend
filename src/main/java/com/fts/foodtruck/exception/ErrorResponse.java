@@ -1,5 +1,8 @@
 package com.fts.foodtruck.exception;
 
+/**
+ * Error response model
+ */
 public class ErrorResponse {
 
   private int statusCode;

@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
+/**
+ * Repository class to handle all the database transactions.
+ */
 @Repository
 public interface FoodTruckRepository extends JpaRepository<FoodTruck, String> {
 
