@@ -25,7 +25,7 @@ for all the available lunch options provided by food trucks. It allows the admin
     Status: 201 OK
     {
         "id": "0231a03b-ff9a-493a-82d2-0e72064a3a63",
-        "name": "FoodTruck3",
+        "name": "FoodTruck",
         "description": "A food truck",
         "availableDate": "2023-03-11T06:39:29.21"
     }
@@ -39,7 +39,7 @@ for all the available lunch options provided by food trucks. It allows the admin
     [
         {
             "id": "0231a03b-ff9a-493a-82d2-0e72064a3a63",
-            "name": "FoodTruck3",
+            "name": "FoodTruck",
             "description": "A food truck",
             "availableDate": "2023-03-11T06:39:29.21"
         }
@@ -54,7 +54,7 @@ for all the available lunch options provided by food trucks. It allows the admin
     [
         {
             "id": "0231a03b-ff9a-493a-82d2-0e72064a3a63",
-            "name": "FoodTruck3",
+            "name": "FoodTruck",
             "description": "A food truck",
             "availableDate": "2023-03-11T06:39:29.21"
         }
@@ -63,7 +63,7 @@ for all the available lunch options provided by food trucks. It allows the admin
 ### Update food truck
     PUT : /v1/foodtrucks/{foodtruckid}
 #### Request
-    curl --location --request PUT 'http://localhost:8080/v1/foodtrucks/77557b0a-0200-4d12-b9e1-2efefc6e17cd' \
+    curl --location --request PUT 'http://localhost:8080/v1/foodtrucks/0231a03b-ff9a-493a-82d2-0e72064a3a63' \
     --header 'Content-Type: application/json' \
     --data-raw '{
         "name": "FoodTruck2"
