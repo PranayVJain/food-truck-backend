@@ -28,11 +28,11 @@ Clarifications
 
 Assumptions
 1. Food truck name is unique.
-2. User management is not handled. 
-3. Authentication is not handled.
+2. User management is not required.
+3. Authentication is not required.
 4. A user can only see the list of food trucks but not the food options available in the food truck.
-5. API for bulk upload for a month is not supported.
-6. The application should be reliable, scalable
+5. API for bulk upload for a month is not required.
+6. The application should be reliable, scalable.
 
 Feature listing: 
 1. The admin user is the super user. 
